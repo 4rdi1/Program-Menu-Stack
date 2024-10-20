@@ -1,0 +1,81 @@
+#include <iostream> // library c++
+#include <stack> // library stack
+
+using namespace std;
+
+int main() {
+    cout << "===================================" << endl;
+    cout << "| NAMA  : M. Khalifatul Ardi      |" << endl;
+	cout << "| NIM   : 231011402091            |" << endl;
+    cout << "| KELAS : 03TPLP035               |" << endl;
+    cout << "| MATKUL: STRUKTUR DATA           |" << endl;
+    cout << "===================================" << endl;
+
+    stack<int> myStack; // deklarasi stack dengan tipe data integer
+    int pilihan_ardi, input; // deklarasi pilihan menu dan input bertipe data integer 
+
+    do {
+    	// pilihan menu STACK
+        cout << "===================================" << endl;
+        cout << "MENU STACK" << endl;
+        cout << "1. Push" << endl; // menambahkan elemen/angka
+        cout << "2. Pop" << endl; // menghapus elemen/angka dari teratas stack
+        cout << "3. Clear" << endl; // menghapus semua elemen/angka dari stack
+        cout << "4. Exit" << endl; // keluar dari program
+        cout << "===================================" << endl;
+        cout << "PILIH NOMOR: ";
+        cin >> pilihan_ardi; // deklarasi pilihan menu
+
+        switch (pilihan_ardi) {
+        case 1:
+        	// memasukan elemen/angka ke stack *push
+            cout << "\nMasukkan angka yang ingin di-push: ";
+            cin >> input;
+            myStack.push(input);
+            cout << "Angka " << input << " telah ditambahkan ke stack" << endl;
+            break;
+
+        case 2:
+        	// menghapus elemen/angka teratas dari stack *pop
+            if (!myStack.empty()) { // untuk memeriksa apakah angka dari stack itu kosong atau tidak
+                cout << "\nAngka " << myStack.top() << " dihapus dari stack" << endl;
+                myStack.pop();
+            } else {
+                cout << "Tidak ada angka untuk di-pop" << endl; // jika angka/elemen tidak ada sama sekali
+            }
+            break;
+
+        case 3:
+        	// menghapus semua elemen dari stack
+            while (!myStack.empty()) {
+                myStack.pop();
+            }
+            cout << "\nSemua angka telah dihapus dari stack" << endl;
+            break;
+
+        case 4:
+            cout << "Exit Program" << endl;
+            break;
+
+        default:
+            cout << "\nPilihan tidak valid. Silakan pilih kembali." << endl; // jika user memasukan pilihan nomor selain 1 - 4
+            continue; // langsung lanjut ke iterasi berikutnya tanpa menampilkan pemberitahuan isi stack
+        }
+
+		// menampilkan elemen/angka sementara atau tersisa di stack *jika ada
+        if (!myStack.empty()) { // mengecek apakah stack kosong atau tidak
+            cout << "\nIsi stack saat ini: "; // tampilan stack yang telah terisi *sisa
+            stack<int> tempStack = myStack; // menampilkan angka-angka dari stack tersisa
+            while (!tempStack.empty()) { // loop dan tampilan / output angka dari stack 
+                cout << tempStack.top() << " "; // menghapus angka teratas / terakhir di input
+                tempStack.pop(); // menghapus angka teratas
+            }
+            cout << endl;
+        } else {
+            cout << "\nIsi stack saat ini: -" << endl; // jika stack sisa kosong maka akan menampilkan output tsb
+        }
+
+    } while (pilihan_ardi != 4); // deklarasi pilihan menu tidak sama dengan 4
+
+    return 0;
+}
